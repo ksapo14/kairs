@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Kairs</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./static/stylesheets/style.css" />
+    <link rel="stylesheet" href="./static/stylesheets/navbar.css" />
+    <script src="./static/javascript/script.js" defer></script>
+    <link rel="icon" href="./media/logo.png" type="image/x-icon">
+    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function () {
+            emailjs.init("4mJXZ5ekLTZjppBS0");
+        })();
+    </script>
+</head>
+<body>
+    <div class="navbar">
+        <a id="img" href="./index.html">
+            <img src="media/logo.png" alt="Kairs Logo">
+        </a>
+        <a href="./contactus">Contact</a>
+        <a href="./product.html">Products</a>
+        <a href="./aboutus.html">About</a>
+        <a href="./index.html">Home</a>
+    </div>
+    <section class="preorder-section">
+        <h1>We haven't launched quite yet...</h1>
+        <h1>Leave your email and we'll let you know when we go live!</h1>
+        <form id="contact-form">
+            <input type="text" name="user_name" placeholder="Your Name" required />
+            <input type="email" name="user_email" placeholder="Your Email" required />
+            <button type="submit">Send</button>
+        </form>
+    </section>
+    <section style="height: 45vh;"></section>
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="./index.html">Home</a>
+                <a href="./aboutus.html">About</a>
+                <a href="./product.html">Products</a>
+                <a href="./contactus.html">Contact</a>
+            </div>
+            <p class="footer-text">© 2025 KAIRS, LLC. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div class="status">
+        <p class="status-text">Thanks! We'll reach out soon!</p>
+        <button class="close-btn" onclick="document.querySelector('.status').style.display='none';">Close</button>
+    </div>
+</body>
+</html>

@@ -1,0 +1,657 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Inter, sans-serif;
+}
+
+body {
+    background-color: #ffffff;
+    overflow-x: hidden;
+}
+
+.navbar.white a {
+    color: #fff;
+}
+
+/* Hero Section */
+.hero-section {
+    height: 100vh;
+    min-height: 500px;
+    background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #333333 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 0 1rem;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(113,163,193,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+    opacity: 0.3;
+}
+
+.hero-content {
+    text-align: center;
+    color: white;
+    z-index: 2;
+    max-width: 800px;
+    padding: 0 2rem;
+    width: 100%;
+}
+
+.hero-title {
+    font-size: clamp(40px, 8vw, 80px);
+    font-weight: 700;
+    margin-bottom: 20px;
+    opacity: 0;
+    transform: translateY(50px);
+    animation: fadeInUp 1s ease 0.5s forwards;
+    line-height: 1.1;
+}
+
+.hero-subtitle {
+    font-size: clamp(18px, 4vw, 24px);
+    margin-bottom: 40px;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1s ease 0.8s forwards;
+    color: #71a3c1;
+}
+
+.hero-description {
+    font-size: clamp(16px, 3.5vw, 18px);
+    line-height: 1.6;
+    margin-bottom: 40px;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1s ease 1s forwards;
+    color: #cccccc;
+}
+
+.cta-button {
+    background: linear-gradient(135deg, #71a3c1, #5a8ca8);
+    color: white;
+    padding: 18px 40px;
+    border: none;
+    border-radius: 50px;
+    font-size: clamp(16px, 3vw, 18px);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1s ease 1.2s forwards;
+    text-decoration: none;
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(113, 163, 193, 0.4);
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Product Section */
+.product-section {
+    padding: 60px 0;
+    background: #fafafa;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    margin-bottom: 60px;
+}
+
+.product-image {
+    position: relative;
+    height: 400px;
+    background: linear-gradient(135deg, #71a3c1 0%, #5a8ca8 50%, #4a7a96 100%);
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: clamp(24px, 4vw, 32px);
+    font-weight: bold;
+    overflow: hidden;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+    transition: all 0.4s ease;
+    text-align: center;
+    padding: 20px;
+}
+
+.product-image:hover {
+    transform: scale(1.02);
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.3);
+}
+
+.product-image::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+    animation: rotate 10s linear infinite;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.product-info h2 {
+    font-size: clamp(32px, 6vw, 48px);
+    color: #333;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.product-info h3 {
+    font-size: clamp(20px, 4vw, 24px);
+    color: #71a3c1;
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+.product-info p {
+    font-size: clamp(16px, 3vw, 18px);
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+.price {
+    font-size: clamp(28px, 5vw, 36px);
+    color: #333;
+    font-weight: 700;
+    margin-bottom: 40px;
+}
+
+.price-note {
+    font-size: 14px;
+    color: #666;
+    margin-top: 10px;
+}
+
+/* Features Grid */
+.features-section {
+    padding: 60px 0;
+    background: white;
+}
+
+.section-title {
+    font-size: clamp(32px, 6vw, 48px);
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.section-subtitle {
+    font-size: clamp(18px, 3.5vw, 20px);
+    color: #666;
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-bottom: 60px;
+}
+
+.feature-card {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s ease;
+    border: 1px solid rgba(113, 163, 193, 0.1);
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+    border-color: rgba(113, 163, 193, 0.3);
+}
+
+.feature-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #71a3c1, #5a8ca8);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.feature-card h4 {
+    font-size: clamp(20px, 3.5vw, 24px);
+    color: #333;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.feature-card p {
+    font-size: clamp(14px, 2.5vw, 16px);
+    color: #666;
+    line-height: 1.6;
+}
+
+/* Specs Section */
+.specs-section {
+    padding: 60px 0;
+    background: #f8f9fa;
+    margin-top: -100px;
+}
+
+.specs-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 20px;
+}
+
+.spec-item {
+    background: white;
+    padding: 25px 20px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.spec-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.spec-label {
+    font-size: clamp(12px, 2.5vw, 14px);
+    color: #666;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.spec-value {
+    font-size: clamp(20px, 4vw, 24px);
+    color: #333;
+    font-weight: 700;
+}
+
+/* CTA Section */
+.cta-section {
+    padding: 60px 0;
+    background: linear-gradient(135deg, #333333 0%, #1a1a1a 50%, #000000 100%);
+    color: white;
+    text-align: center;
+}
+
+.cta-section h2 {
+    font-size: clamp(32px, 6vw, 48px);
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.cta-section p {
+    font-size: clamp(18px, 3.5vw, 20px);
+    margin-bottom: 40px;
+    color: #cccccc;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #71a3c1, #5a8ca8);
+    color: white;
+    padding: 18px 40px;
+    border: none;
+    border-radius: 50px;
+    font-size: clamp(16px, 3vw, 18px);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.btn-secondary {
+    background: transparent;
+    color: white;
+    padding: 18px 40px;
+    border: 2px solid #71a3c1;
+    border-radius: 50px;
+    font-size: clamp(16px, 3vw, 18px);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(113, 163, 193, 0.4);
+}
+
+.btn-secondary:hover {
+    background: #71a3c1;
+    transform: translateY(-3px);
+}
+
+/* Footer */
+.footer {
+    background-color: #000;
+    color: white;
+    padding: 40px 0 30px;
+    text-align: center;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.footer-links a {
+    color: white;
+    text-decoration: none;
+    font-size: clamp(14px, 2.5vw, 16px);
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: #71a3c1;
+}
+
+.footer-text {
+    font-size: clamp(12px, 2vw, 14px);
+    color: #666;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .container {
+        padding: 0 1.5rem;
+    }
+
+    .product-grid {
+        gap: 40px;
+    }
+
+    .features-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 25px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .product-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+    }
+
+    .features-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+    }
+
+    .specs-section {
+        margin-top: -50px;
+    }
+
+    .product-section {
+        padding: 50px 0;
+    }
+
+    .features-section,
+    .cta-section {
+        padding: 50px 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-section {
+        height: 80vh;
+        min-height: 400px;
+    }
+
+    .hero-content {
+        padding: 0 1rem;
+    }
+
+    .product-section,
+    .features-section,
+    .specs-section,
+    .cta-section {
+        padding: 40px 0;
+    }
+
+    .container {
+        padding: 0 1rem;
+    }
+
+    .product-image {
+        height: 300px;
+        font-size: 20px;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .feature-card {
+        padding: 25px;
+    }
+
+    .feature-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+    }
+
+    .specs-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .spec-item {
+        padding: 20px 15px;
+    }
+
+    .specs-section {
+        margin-top: 0;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+        padding: 15px 35px;
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .footer-links {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .footer {
+        padding: 30px 0 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-section {
+        height: 70vh;
+        min-height: 350px;
+    }
+
+    .hero-content {
+        padding: 0 0.5rem;
+    }
+
+    .product-section,
+    .features-section,
+    .specs-section,
+    .cta-section {
+        padding: 30px 0;
+    }
+
+    .container {
+        padding: 0 0.5rem;
+    }
+
+    .product-image {
+        height: 250px;
+        font-size: 18px;
+        border-radius: 20px;
+    }
+
+    .product-info {
+        text-align: center;
+    }
+
+    .feature-card {
+        padding: 20px;
+    }
+
+    .specs-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .spec-item {
+        padding: 15px 10px;
+    }
+
+    .cta-button,
+    .btn-primary,
+    .btn-secondary {
+        padding: 12px 25px;
+        font-size: 16px;
+    }
+
+    .footer-links {
+        gap: 10px;
+    }
+}
+
+@media (max-width: 360px) {
+    .hero-title {
+        font-size: 32px;
+    }
+
+    .hero-subtitle {
+        font-size: 16px;
+    }
+
+    .hero-description {
+        font-size: 14px;
+    }
+
+    .product-image {
+        height: 200px;
+        font-size: 16px;
+    }
+
+    .feature-card {
+        padding: 15px;
+    }
+
+    .spec-item {
+        padding: 12px 8px;
+    }
+}
+
+/* Animation for scroll reveals */
+.reveal-element {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+}
+
+.reveal-element.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Ensure text doesn't break awkwardly on very small screens */
+@media (max-width: 320px) {
+    .hero-title {
+        font-size: 28px;
+        line-height: 1.2;
+    }
+
+    .product-info h2 {
+        font-size: 28px;
+    }
+
+    .section-title {
+        font-size: 28px;
+    }
+
+    .cta-section h2 {
+        font-size: 28px;
+    }
+}

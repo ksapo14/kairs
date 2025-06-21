@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Kairs</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./static/stylesheets/style.css" />
+    <link rel="stylesheet" href="./static/stylesheets/navbar.css" />
+    <link rel="icon" href="./media/logo.png" type="image/x-icon">
+    <script src="./static/javascript/script.js" defer></script>
+    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function () {
+            emailjs.init("4mJXZ5ekLTZjppBS0");
+        })();
+    </script>
+</head>
+
+<body>
+    <div class="main-content">
+        <div class="navbar">
+            <a id="img" href="./index.html">
+                <img src="media/logo.png" alt="Kairs Logo">
+            </a>
+            <a href="./contactus.html">Contact</a>
+            <a href="./product.html">Products</a>
+            <a href="./aboutus.html">About</a>
+            <a href="./index.html">Home</a>
+        </div>
+        <section>
+            <div class="title">
+                <h1 class="reveal-element title-element">k<span style="color: #71a3c1;">ai</span>rs</h1>
+                <span></span>
+                <h3 class="reveal-element title-element">the future of exercise</h3>
+            </div>
+        </section>
+        <section class="video-section">
+            <div class="video-container" id="video-container">
+                <video id="apple-video" muted playsinline autoplay loop>
+                    <source src="media/kairs website clip.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <!-- IN CASE WE WANT TEXT OVERLAY -->
+            <!-- <div class="video-overlay">
+                <div class="overlay-text" data-text="1">Revolutionary Fitness Tracking</div>
+            </div> -->
+        </section>
+        <section>
+            <h1 class="reveal-element">Get to Know Kairs</h1>
+            <br>
+            <div class="tabs-section">
+                <div class="nav-buttons left">
+                    <button class="nav-btn" id="prevBtn">‹</button>
+                </div>
+                <div class="nav-buttons right">
+                    <button class="nav-btn" id="nextBtn">›</button>
+                </div>
+    
+                <div class="scroll-container" id="scrollContainer">
+                    <div class="tab" id="tab1" data-tab="smart-tracking">
+                        <h1>Smart Tracking</h1>
+                        <p>Experience revolutionary fitness tracking with advanced AI-powered sensors that monitor your
+                            every movement, providing real-time feedback and personalized workout recommendations.</p>
+                    </div>
+                    <div class="tab" id="tab2" data-tab="adaptive-training">
+                        <h1>Adaptive Training</h1>
+                        <p>Our intelligent system adapts to your fitness level, creating dynamic workout plans that evolve
+                            with your progress, ensuring optimal results and preventing plateaus.</p>
+                    </div>
+                    <div class="tab" id="tab3" data-tab="biometric-analysis">
+                        <h1>Biometric Analysis</h1>
+                        <p>Advanced biometric monitoring tracks heart rate, calories burned, muscle engagement, and recovery
+                            metrics to provide comprehensive insights into your fitness journey.</p>
+                    </div>
+                    <div class="tab" id="tab4" data-tab="virtual-coaching">
+                        <h1>Virtual Coaching</h1>
+                        <p>Get personalized coaching from AI-powered virtual trainers who provide form corrections,
+                            motivation, and expert guidance throughout your workout sessions.</p>
+                    </div>
+                    <div class="tab" id="tab5" data-tab="social-fitness">
+                        <h1>Social Fitness</h1>
+                        <p>Connect with friends and fitness enthusiasts worldwide. Share achievements, compete in
+                            challenges, and stay motivated through our integrated social platform.</p>
+                    </div>
+                    <div class="tab" id="tab6" data-tab="nutrition-tracking">
+                        <h1>Nutrition Tracking</h1>
+                        <p>Comprehensive nutrition monitoring with AI-powered meal recognition, calorie tracking, and
+                            personalized dietary recommendations to complement your fitness goals.</p>
+                    </div>
+                    <div class="tab" id="tab7" data-tab="recovery-optimization">
+                        <h1>Recovery Optimization</h1>
+                        <p>Smart recovery tracking monitors sleep patterns, stress levels, and muscle recovery to optimize
+                            your rest periods and prevent overtraining.</p>
+                    </div>
+                    <div class="tab" id="tab8" data-tab="gamification">
+                        <h1>Gamification</h1>
+                        <p>Transform your fitness journey into an engaging game with achievements, levels, rewards, and
+                            challenges that keep you motivated and coming back for more.</p>
+                    </div>
+                </div>
+                <!-- IF DOTS NEEDED -->
+                <!-- <div class="tab-indicators" id="tabIndicators">
+                    <div class="indicator active" data-tab="0"></div>
+                    <div class="indicator" data-tab="1"></div>
+                    <div class="indicator" data-tab="2"></div>
+                    <div class="indicator" data-tab="3"></div>
+                    <div class="indicator" data-tab="4"></div>
+                    <div class="indicator" data-tab="5"></div>
+                    <div class="indicator" data-tab="6"></div>
+                    <div class="indicator" data-tab="7"></div>
+                </div> -->
+            </div>
+        </section>
+        <section>
+            <h1 class="header">Our Devices</h1>
+            <div class="products-container" id="productsContainer">
+                <div class="product">
+                    <img src="media/Kairs Prototype.png" alt="Kairs Prototype" class="reveal-element">
+                    <h1 class="reveal-element">KAIRS Pro</h1>
+                    <h3 class="reveal-element">AI Powered</h3>
+                    <p class="reveal-element">officia inventore dicta ad! Officiis consequuntur animi laboriosam? Rem dolorem esse deleniti voluptas delectus tenetur?</p>
+                    <h3 class="reveal-element">Adaptive Technology</h3>
+                    <p class="reveal-element"> oribus doloremque inventore nobis facilis
+                        exercitationem molestiae magnam! Quasi, asperiores cumque.</p>
+                    <h3 class="reveal-element">599$</h3>
+                    <button class="product-btn reveal-element" id="productContainer">Learn More</button>
+                </div>
+            </div>
+        </section>
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="./index.html">Home</a>
+                    <a href="./aboutus.html">About</a>
+                    <a href="./product.html">Products</a>
+                    <a href="./contactus.html">Contact</a>
+                </div>
+                <p class="footer-text">© 2025 KAIRS, LLC. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+    
+    <!-- Modal Popup -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="modalTitle">Feature Title</h2>
+                <button class="modal-close" id="modalClose">&times;</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Content will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
+    <!-- LEAVING OUT FOR NOW -->
+    <!-- <section>
+        <div class="info-container">
+            <div class="image reveal-element">
+                <span></span>
+                <img src="Kairs Prototype.png" alt="Kairs Prototype" />
+                <span></span>
+            </div>
+            <div>
+                <div>hi</div>
+                <div>hi</div>
+                <div>hi</div>
+                <div>hi</div>
+            </div>
+        </div>
+    </section> -->
+</body>
+
+</html>

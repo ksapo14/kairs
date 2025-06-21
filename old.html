@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Kairs</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Inter, sans-serif;
+        }
+
+        body {
+            background-color: #ffffff;
+        }
+
+        section {
+            height: 100vh;
+        }
+
+        .navbar {
+            background-color: transparent;
+            overflow: hidden;
+            height: 10vh;
+            top: 0;
+            position: absolute;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .navbar a {
+            float: left;
+            display: block;
+            color: black;
+            text-align: center;
+            padding: 20px 24px;
+            text-decoration: none;
+            font-size: 24px;
+            transition: color 0.3s ease;
+        }
+
+        .navbar a:hover {
+            color: white;
+        }
+
+        section:nth-child(2) {
+            height: 30vh;
+            display: grid;
+            place-items: center;
+            text-align: center;
+            padding-top: 10vh;
+            margin-bottom: 30px;
+            /* Account for navbar */
+        }
+
+        section:nth-child(4) {
+            padding-top: 0;
+            margin-top: -50px;
+        }
+
+        .title {
+            font-size: 70px;
+            color: black;
+            display: grid;
+            grid-template-columns: 2fr 1fr 2fr;
+            margin-inline: 50px;
+        }
+
+        .title h3{
+            font-size: 60px;
+            text-align: right;
+            margin-right: 10%;
+        }
+
+        .title .title-element:nth-child(1) {
+            margin-left: 10%;
+            text-align: left;
+        }
+
+        .video-section {
+            height: 180vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fff;
+            position: relative;
+            padding: 0 2rem;
+        }
+
+        .video-container {
+            position: sticky;
+            top: 50vh;
+            transform: translateY(-50%);
+            width: 100%;
+            max-width: 100%;
+            aspect-ratio: 16/9;
+            border-radius: 0px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        #apple-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .reveal-element {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 1s ease-in-out;
+        }
+
+        .reveal-element.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* Updated styles for tab animations */
+        .tab {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+
+        .tab.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .shrink-element {
+            width: 100%;
+            height: 100%;
+            transition: all 1s ease-in-out;
+        }
+
+        .shrink-element.visible {
+            width: 60%;
+            height: 60%;
+            border-radius: 100px;
+        }
+
+        @media (max-width: 768px) {
+            .title {
+                font-size: 50px;
+            }
+
+            .navbar a {
+                font-size: 18px;
+                padding: 15px 20px;
+            }
+
+            .video-section {
+                padding: 0 1rem;
+            }
+        }
+
+        section:nth-child(4) h1 {
+            text-align: left;
+            margin-left: 50px;
+            font-size: 50px;
+        }
+
+        /* Updated scroll container with navigation */
+        .tabs-section {
+            position: relative;
+            width: 100%;
+        }
+
+        div.scroll-container {
+            display: flex;
+            flex-direction: row;
+            overflow-x: scroll;
+            width: 100%;
+            height: 570px;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+            scroll-behavior: smooth;
+            /* Hide scrollbar for Firefox */
+        }
+
+        div.scroll-container::-webkit-scrollbar {
+            display: none;
+            /* Hide scrollbar */
+        }
+
+        div.scroll-container .tab {
+            width: 300px;
+            height: 500px;
+            margin: 30px;
+            padding: 30px;
+            border: 1px solid #000;
+            border-radius: 20px;
+            flex-shrink: 0;
+            font-family: Inter, sans-serif;
+        }
+
+        div.scroll-container .tab:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+        }
+
+        div.scroll-container .tab h1{
+            margin-bottom: 20px;
+        }
+
+        div.scroll-container .tab p {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        /* Navigation buttons */
+        .nav-buttons {
+            position: absolute;
+            top: 100%;
+            transform: translateY(-50%);
+            z-index: 100;
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-buttons.left {
+            right: 8%;
+        }
+
+        .nav-buttons.right {
+            right: 4%;
+        }
+
+        .nav-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.7);
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-btn:hover {
+            background: rgba(0, 0, 0, 0.9);
+            transform: scale(1.1);
+        }
+
+        .nav-btn:disabled {
+            background: rgba(0, 0, 0, 0.3);
+            cursor: not-allowed;
+            transform: scale(1);
+        }
+
+        .nav-btn:disabled:hover {
+            background: rgba(0, 0, 0, 0.3);
+            transform: scale(1);
+        }
+
+        /* Tab indicators */
+        .tab-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .indicator.active {
+            background: rgba(0, 0, 0, 0.8);
+            transform: scale(1.2);
+        }
+
+        @media (max-width: 768px) {
+            .nav-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+
+            .nav-buttons.left {
+                left: 5px;
+            }
+
+            .nav-buttons.right {
+                right: 5px;
+            }
+        }
+
+        section.info-container {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            place-items: center;
+        }
+
+        section .image {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: 1fr 1fr 1fr;
+            place-items: center;
+        }
+
+        .footer {
+            background-color: #000;
+            color: white;
+            padding: 20px 20px 200px 20px;
+            width: 100%;
+            height: 40vh;
+            margin-top: 60px;
+        }
+
+        .footer .links-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            text-align: center;
+            margin: 40px;
+        }
+
+        .footer h5 {
+            text-align: center;
+        }
+
+        .footer .links-container .links-column {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .footer .links-container .links-column p {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .footer .links-container .links-column a{
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            margin: 10px 0;
+            transition: color 0.3s ease;
+        }
+
+        .footer .links-container .links-column a:hover {
+            color: gray
+        }
+
+        .footer .links-container .h-line {
+            width: 50%;
+            height: 1px;
+            background-color: white;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <a href="./index.html">Home</a>
+        <a href="#">About</a>
+        <a href="#">Services</a>
+        <a href="#">Contact</a>
+    </div>
+    <section>
+        <div class="title">
+            <h1 class="reveal-element title-element">kairs</h1>
+            <span></span>
+            <h3 class="reveal-element title-element">the future of excersise</h3>
+        </div>
+    </section>
+    <section class="video-section">
+        <div class="video-container" id="video-container">
+            <video id="apple-video" muted playsinline autoplay loop>
+                <source src="example_apple_video.mp4" type="video/mp4">
+                type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </section>
+    <section>
+        <h1 class="reveal-element">Get to Know Kairs</h1>
+        <br>
+        <div class="tabs-section">
+            <!-- Navigation buttons -->
+            <div class="nav-buttons left">
+                <button class="nav-btn" id="prevBtn">‹</button>
+            </div>
+            <div class="nav-buttons right">
+                <button class="nav-btn" id="nextBtn">›</button>
+            </div>
+
+            <div class="scroll-container" id="scrollContainer">
+                <div class="tab" id="tab1">
+                    <h1>Lorem</h1>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quibusdam quam hic eum debitis
+                        exercitationem repellendus dicta culpa distinctio sequi nostrum ducimus suscipit labore, non
+                        aut,
+                        nesciunt esse officia voluptatum dolorem?</p>
+                </div>
+                <div class="tab" id="tab2">
+                    <h1>Lorem</h1>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquam porro unde reprehenderit harum.
+                        Pariatur totam dignissimos, libero mollitia excepturi unde autem! Libero quis vitae
+                        reprehenderit
+                        delectus placeat exercitationem fugiat nemo!</p>
+                </div>
+                <div class="tab" id="tab3">
+                    <h1>Lorem</h1>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis dolorem tempore a assumenda enim
+                        recusandae, sequi quod excepturi consequatur tempora neque eos reiciendis, expedita sint aperiam
+                        minus architecto quaerat doloribus?</p>
+                </div>
+                <div class="tab" id="tab4">
+                    <h1>Lorem</h1>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero adipisci id commodi eveniet quaerat
+                        animi cupiditate maiores, dicta explicabo ea inventore, cumque, quia voluptatem possimus porro
+                        dolores exercitationem aperiam perspiciatis.</p>
+                </div>
+                <div class="tab" id="tab5">
+                    <h1>Lorem</h1>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero adipisci id commodi eveniet quaerat
+                        animi
+                        cupiditate maiores, dicta explicabo ea inventore, cumque, quia voluptatem possimus porro dolores
+                        exercitationem
+                        aperiam perspiciatis.</p>
+                </div>
+                <div class="tab" id="tab6">
+                    <h1>Lorem</h1>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero adipisci id commodi eveniet quaerat
+                        animi
+                        cupiditate maiores, dicta explicabo ea inventore, cumque, quia voluptatem possimus porro dolores
+                        exercitationem
+                        aperiam perspiciatis.</p>
+                </div>
+                <div class="tab" id="tab7">
+                    <h1>Lorem</h1>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero adipisci id commidi eveniet quaerat
+                        animi
+                        cupiditate maiores, dicta explicabo ea inventore, cumque, quia voluptatem possimus porro dolores
+                        exercitationem
+                        aperiam perspiciatis.</p>
+                </div>
+                <div class="tab" id="tab8">
+                    <h1>Lorem</h1>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero adipisci id commodi eveniet quaerat
+                        animi
+                        cupiditate maiores, dicta explicabo ea inventore, cumque, quia voluptatem possimus porro dolores
+                        exercitationem
+                        aperiam perspiciatis.</p>
+                </div>
+            </div>
+
+            <!-- Tab indicators -->
+            <div class="tab-indicators" id="tabIndicators">
+                <div class="indicator active" data-tab="0"></div>
+                <div class="indicator" data-tab="1"></div>
+                <div class="indicator" data-tab="2"></div>
+                <div class="indicator" data-tab="3"></div>
+                <div class="indicator" data-tab="4"></div>
+                <div class="indicator" data-tab="5"></div>
+                <div class="indicator" data-tab="6"></div>
+                <div class="indicator" data-tab="7"></div>
+            </div>
+        </div>
+        <div class="reveal-click">
+            <h1 class="reveal-element">Lorem</h1>
+            <p class="reveal-element">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis harum
+                dolores optio aperiam quibusdam vero dolore magnam facere sint provident perspiciatis, adipisci
+                excepturi quas explicabo minima ea ratione odio dignissimos?</p>
+        </div>
+    </section>
+    <section class="footer">
+        <div class="links-container">
+            <div class="links-column">
+                <a href="./index.html">Home</a>
+                <a href="#">About</a>
+                <a href="#">Services</a>
+                <a href="#">Contact</a>
+            </div>
+            <div class="links-column">
+                <h3>Contact US</h3>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic ratione dolor vel qui iste quidem
+                    delectus architecto, consequatur nemo molestias itaque dolores esse rerum, perferendis odit, quas
+                    beatae nobis nulla.</p>
+            </div>
+        </div>
+        <h5>© 2025 KAIRS, LLC. All rights reserved.</h5>
+    </section>
+    <!-- LEAVING OUT FOR NOW -->
+    <!-- <section>
+        <div class="info-container">
+            <div class="image reveal-element">
+                <span></span>
+                <img src="Kairs Prototype.png" alt="Kairs Prototype" />
+                <span></span>
+            </div>
+            <div>
+                <div>hi</div>
+                <div>hi</div>
+                <div>hi</div>
+                <div>hi</div>
+            </div>
+        </div>
+    </section> -->
+    <script>
+        // Intersection Observer for scroll-triggered animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        // Standard observer for most elements
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Special observer for tabs with staggered animation
+        const tabObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Animate the first tab immediately
+                    entry.target.classList.add('visible');
+
+                    // Animate the remaining tabs with staggered delays
+                    const tabs = document.querySelectorAll('.tab');
+                    tabs.forEach((tab, index) => {
+                        if (index > 0) { // Skip the first tab since it's already animated
+                            setTimeout(() => {
+                                tab.classList.add('visible');
+                            }, index * 150); // 150ms delay between each tab
+                        }
+                    });
+                }
+            });
+        }, {
+            threshold: 0.2,
+            rootMargin: '0px 0px -100px 0px'
+        });
+
+        // Video and container elements
+        const videoContainer = document.getElementById('video-container');
+
+        // Scroll progress thresholds
+        const thresholds = [];
+        for (let i = 0; i <= 100; i += 2) {
+            thresholds.push(i / 100);
+        }
+
+        // Intersection Observer for video animations
+        const videoObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const progress = Math.min(entry.intersectionRatio, 1);
+
+                    // Only animate after 50% visibility
+                    if (progress >= 0.5) {
+                        // Normalize progress from 0.5-1 to 0-1
+                        const normalizedProgress = Math.min((progress - 0.5) * 2, 1);
+
+                        // Animation values
+                        const scale = 1 - (normalizedProgress * 0.3);
+                        const borderRadius = normalizedProgress * 30;
+                        const opacity = 1 - (normalizedProgress * 0.2);
+
+                        // Apply transformations
+                        videoContainer.style.transform = `translateY(-50%) scale(${scale})`;
+                        videoContainer.style.borderRadius = `${borderRadius}px`;
+                        videoContainer.style.opacity = opacity;
+
+                    } else {
+                        // Reset to original state
+                        videoContainer.style.transform = `translateY(-50%) scale(1)`;
+                        videoContainer.style.borderRadius = `0px`;
+                        videoContainer.style.opacity = 1;
+                    }
+                } else {
+                    // Element not visible, reset
+                    videoContainer.style.transform = `translateY(-50%) scale(1)`;
+                    videoContainer.style.borderRadius = `0px`;
+                    videoContainer.style.opacity = 1;
+                }
+            });
+        }, {
+            threshold: thresholds,
+            rootMargin: '0px'
+        });
+
+        // Tab navigation functionality
+        let currentTabIndex = 0;
+        const scrollContainer = document.getElementById('scrollContainer');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const tabs = document.querySelectorAll('.tab');
+        const indicators = document.querySelectorAll('.indicator');
+        const tabWidth = 340; // 300px width + 40px margins
+
+        function updateTabNavigation() {
+            // Update button states
+            prevBtn.disabled = currentTabIndex === 0;
+            nextBtn.disabled = currentTabIndex === tabs.length - 1;
+
+            // Update indicators
+            indicators.forEach((indicator, index) => {
+                indicator.classList.toggle('active', index === currentTabIndex);
+            });
+
+            // Scroll to current tab
+            const scrollPosition = currentTabIndex * tabWidth;
+            scrollContainer.scrollTo({
+                left: scrollPosition,
+                behavior: 'smooth'
+            });
+        }
+
+        function goToTab(index) {
+            if (index >= 0 && index < tabs.length) {
+                currentTabIndex = index;
+                updateTabNavigation();
+            }
+        }
+
+        function nextTab() {
+            if (currentTabIndex < tabs.length - 1) {
+                currentTabIndex++;
+                updateTabNavigation();
+            }
+        }
+
+        function prevTab() {
+            if (currentTabIndex > 0) {
+                currentTabIndex--;
+                updateTabNavigation();
+            }
+        }
+
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            // Observe video for scroll animations
+            if (videoContainer) {
+                videoObserver.observe(videoContainer);
+            }
+
+            // Observe all reveal elements
+            const revealElements = document.querySelectorAll('.reveal-element');
+            revealElements.forEach(el => observer.observe(el));
+
+            // Observe all shrink elements
+            const shrinkElements = document.querySelectorAll('.shrink-element');
+            shrinkElements.forEach(el => observer.observe(el));
+
+            // Observe the first tab to trigger staggered animation for all tabs
+            const firstTab = document.getElementById('tab1');
+            if (firstTab) {
+                tabObserver.observe(firstTab);
+            }
+
+            // Tab navigation event listeners
+            nextBtn.addEventListener('click', nextTab);
+            prevBtn.addEventListener('click', prevTab);
+
+            // Indicator click handlers
+            indicators.forEach((indicator, index) => {
+                indicator.addEventListener('click', () => goToTab(index));
+            });
+
+            // Initialize tab navigation
+            updateTabNavigation();
+
+            // Smooth scrolling for better video control
+            document.documentElement.style.scrollBehavior = 'auto';
+
+            // Optional: Track manual scroll position to update current tab
+            let scrollTimeout;
+            scrollContainer.addEventListener('scroll', () => {
+                clearTimeout(scrollTimeout);
+                scrollTimeout = setTimeout(() => {
+                    const scrollLeft = scrollContainer.scrollLeft;
+                    const newIndex = Math.round(scrollLeft / tabWidth);
+                    if (newIndex !== currentTabIndex && newIndex >= 0 && newIndex < tabs.length) {
+                        currentTabIndex = newIndex;
+                        // Update indicators without scrolling (to avoid infinite loop)
+                        prevBtn.disabled = currentTabIndex === 0;
+                        nextBtn.disabled = currentTabIndex === tabs.length - 1;
+                        indicators.forEach((indicator, index) => {
+                            indicator.classList.toggle('active', index === currentTabIndex);
+                        });
+                    }
+                }, 150);
+            });
+        });
+    </script>
+</body>
+
+</html>
